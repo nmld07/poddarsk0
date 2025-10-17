@@ -399,25 +399,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Показываем кнопку установки
-let deferredPrompt;
-const installBtn = document.createElement('button');
-installBtn.innerHTML = '📱 Установить приложение';
-installBtn.style.cssText = `
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #2c5530;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  font-size: 14px;
-`;
-
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -433,4 +414,60 @@ window.addEventListener('beforeinstallprompt', (e) => {
             deferredPrompt = null;
         });
     });
+
+});
+// Регистрация Service Worker для PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/poddarsk/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker зарегистрирован');
+                showInstallPrompt(); // Показываем кнопку установки
+            })
+            .catch(function(error) {
+                console.log('Ошибка ServiceWorker: ', error);
+            });
+    });
+}
+
+// Показываем кнопку установки
+let deferredPrompt;
+
+function showInstallPrompt() {
+    const installBtn = document.createElement('button');
+    installBtn.innerHTML = '📱 Установить приложение';
+    installBtn.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #2c5530;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        font-size: 14px;
+    `;
+    
+    installBtn.onclick = function() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(function(choiceResult) {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Пользователь установил приложение');
+                }
+                deferredPrompt = null;
+            });
+        }
+    };
+    
+    document.body.appendChild(installBtn);
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showInstallPrompt();
 });
