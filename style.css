@@ -659,3 +659,60 @@ footer {
         font-size: 14px;
     }
 }
+/* Исправление для мобильного меню */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 5%;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-links li {
+        margin: 0 !important;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+        white-space: nowrap;
+    }
+    
+    /* Особые стили для кнопки входа */
+    .login-btn {
+        background: #2c5530 !important;
+        color: white !important;
+        padding: 6px 12px !important;
+        border-radius: 15px !important;
+        font-size: 12px !important;
+        border: none !important;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 0.3rem;
+    }
+    
+    .nav-links a {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+    
+    .login-btn {
+        padding: 5px 10px !important;
+        font-size: 11px !important;
+    }
+}
