@@ -135,22 +135,26 @@
                         <li>🌱 Жизнь в гармонии с природой</li>
                     </ul>
                 </div>
-                <form action="https://formspree.io/f/xyznvggj" method="POST" enctype="multipart/form-data">
-                    <h3>Оставить заявку</h3>
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="email" placeholder="E-mail" required>
-                    <select required>
-                        <option value="">Выберите роль</option>
-                        <option value="developer">Разработчик</option>
-                        <option value="scientist">Ученый/Исследователь</option>
-                        <option value="designer">Дизайнер/Архитектор</option>
-                        <option value="investor">Инвестор</option>
-                        <option value="other">Другое</option>
-                    </select>
-                    <textarea placeholder="Расскажите о своих навыках и почему хотите присоединиться..."
-                        rows="4"></textarea>
-                    <button type="submit">Отправить заявку</button>
-                </form>
+                <form action="https://formspree.io/f/xyznvggj" method="POST">
+    <h3>Оставить заявку</h3>
+    
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    
+    <input type="email" name="email" placeholder="E-mail" required>
+    
+    <select name="role" required>
+        <option value="">Выберите роль</option>
+        <option value="developer">Разработчик</option>
+        <option value="scientist">Ученый/Исследователь</option>
+        <option value="designer">Дизайнер/Архитектор</option>
+        <option value="investor">Инвестор</option>
+        <option value="other">Другое</option>
+    </select>
+    
+    <textarea name="message" placeholder="Расскажите о своих навыках и почему хотите присоединиться..." rows="4"></textarea>
+    
+    <button type="submit">Отправить заявку</button>
+</form>
             </div>
         </div>
     </section>
@@ -939,4 +943,5 @@
         console.log('Демо-доступ:\nАдмин: admin / admin123\nЖитель: PD-0001 / pass123');
 
     </script>
+
 
